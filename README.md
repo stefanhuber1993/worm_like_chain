@@ -2,7 +2,7 @@
 ![IntroPlot](intro.png)
 
 ## Description
-Simulates a bundle of _n_ Worm-Like-Chains with a defined Persistence Length _p_ and a contour length _L_. Units can be plugged in arbitrarily since the result does not change if 1.0 stands for 1.0 meter or 1.0 nanometer.
+Simulates a bundle of _n_ Worm-Like-Chains in 2D with a defined Persistence Length _p_ and a contour length _L_. Units can be plugged in arbitrarily since the result does not change if 1.0 stands for 1.0 meter or 1.0 nanometer.
 
 ## Dependencies
 python (2.7 or 3.5), numpy, scipy, matplotlib
