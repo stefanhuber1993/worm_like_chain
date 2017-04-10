@@ -43,7 +43,7 @@ bundle.data
 
 ### Compute persistence length
 This algorithm computes the mean correlation of chain segments over distance and returns $\lambda$ of a fitted exponential of the decay of correlation values.
-In verbose mode, the exponential curve 
+In verbose mode, $\lambda$ is returned along with the exponential curve.
 ```python
 bundle.compute_persistence_length()
 >>>1.0849898854583857
