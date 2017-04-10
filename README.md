@@ -1,17 +1,25 @@
 # Worm Like Chain Simulator
+![IntroPlot](intro.png)
 
 ## Description
-Simulates a bundle of Worm-Like-Chains with a defined Persistence Length
+Simulates a bundle of $n$ Worm-Like-Chains with a defined Persistence Length $p$ and a contour length $L$. 
 
 ## Dependencies
 numpy, scipy, matplotlib
 
 ## Usage
+
+### Simulate Bundle of Chains
 ```python
 from WLC import ChainBundle
 bundle = ChainBundle()
-bundle.compute(n_chains=10, persistence_length=1, contour_length=10, n_segments=100)
+bundle.compute(n_chains=10, persistence_length=1, contour_length=10, n_segments=100) 
+# n_segments: How smooth chain should be approximated by linear segments.
+# Should be at least 50 for meaningful results
+```
 
+### Output Data
+```python
 bundle.data.shape
 >>>(10, 100, 2) # 10 chains, containing 100 points, (x,y) coordinates
 
@@ -31,11 +39,24 @@ bundle.data
         [-1.33431195,  1.46191013],
         [-1.30943588,  1.55876663],
         [-1.24568973,  1.63581485]]])
+```
 
+### Compute persistence length
+This algorithm computes the mean correlation of chain segments over distance and returns $\lambda$ of a fitted exponential of the decay of correlation values.
+In verbose mode, the exponential curve 
+```python
 bundle.compute_persistence_length()
 >>>1.0849898854583857
 
-# Plotting
+l, xvals, yvals = bundle.compute_persistence_length(verbose=True)
+plt.plot(xvals, yvals)
+plt.xlabel('Distance on the chain')
+plt.ylabel('Correlation of segments')
+```
+![ExponPlot](expon.png)
+
+### Plotting
+```python
 import matplotlib.pyplot as plt
 bundle1 = ChainBundle()
 bundle1.compute(n_chains=10, persistence_length=1, contour_length=10, n_segments=100)
@@ -59,3 +80,6 @@ plt.show()
 ## Source
 Simulation procedure is explained in appendix of this paper:
 * Castro, C. E., Su, H.-J., Marras, A. E., Zhou, L., & Johnson, J. (2015). Mechanical design of DNA nanostructures. Nanoscale, 7(14), 5913–5921. https://doi.org/10.1039/C4NR07153K_
+
+Computation of persistence length of a bundle is adapted from:
+* https://pythonhosted.org/MDAnalysis/_modules/MDAnalysis/analysis/polymer.html"""
