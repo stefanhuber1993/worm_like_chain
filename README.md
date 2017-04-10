@@ -53,8 +53,8 @@ plt.xlabel('x [nm]')
 plt.ylabel('y [nm]')
 
 plt.show()
-
 ```
+![BundlePlot](plot.png)
 
 ## Source
 Simulation procedure is explained in appendix of this paper:
