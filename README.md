@@ -2,7 +2,7 @@
 ![IntroPlot](intro.png)
 
 ## Description
-Simulates a bundle of $n$ Worm-Like-Chains with a defined Persistence Length $p$ and a contour length $L$. 
+Simulates a bundle of _n_ Worm-Like-Chains with a defined Persistence Length _p_ and a contour length _L_. 
 
 ## Dependencies
 numpy, scipy, matplotlib
@@ -42,8 +42,8 @@ bundle.data
 ```
 
 ### Compute persistence length
-This algorithm computes the mean correlation of chain segments over distance and returns $\lambda$ of a fitted exponential of the decay of correlation values.
-In verbose mode, $\lambda$ is returned along with the exponential curve.
+This algorithm computes the mean correlation of chain segments over distance and returns _lambda_ of a fitted exponential of the decay of correlation values.
+In verbose mode, _lambda_ is returned along with the exponential curve.
 ```python
 bundle.compute_persistence_length()
 >>>1.0849898854583857
