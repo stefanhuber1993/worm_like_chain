@@ -77,9 +77,11 @@ plt.show()
 ```
 ![BundlePlot](plot.png)
 
-## Sources
+## References
 Simulation procedure is explained in appendix of this paper:
 * Castro, C. E., Su, H.-J., Marras, A. E., Zhou, L., & Johnson, J. (2015). Mechanical design of DNA nanostructures. Nanoscale, 7(14), 5913–5921. https://doi.org/10.1039/C4NR07153K_
 
 Computation of persistence length of a bundle is adapted from:
 * https://pythonhosted.org/MDAnalysis/_modules/MDAnalysis/analysis/polymer.html"""
+
+I am not author of/affiliated to either of above references.
