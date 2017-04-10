@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class ChainBundle():
     def __init__(self):
-        self.bundle = None
+        self.data = None
 
     def compute(self, n_chains, persistence_length, contour_length, n_segments=100):
         """
@@ -22,16 +23,15 @@ class ChainBundle():
         coordinates[:, 1, 0] = segment_length  # Chain starts directly into x direction
         angle = [0]
 
-        for segment in range(n_segments - 1):
+        for segment in range(n_segments - 2):
             random_dir = np.random.choice([-1, 1], n_chains).astype(np.float64)
             angle += random_dir * np.arccos(np.exp(- segment_length / persistence_length / 1.0))
             coordinates[:, segment + 2, 0] = coordinates[:, segment + 1, 0] + segment_length * np.cos(angle)
             coordinates[:, segment + 2, 1] = coordinates[:, segment + 1, 1] + segment_length * np.sin(angle)
 
-        self.bundle = coordinates
+        self.data = coordinates
 
-
-    def compute_persistence_length_exact(self, verbose=False):
+    def compute_persistence_length(self, verbose=False):
         """
         verbose:
         :return: persistence length, x_values, exponential_curve
@@ -41,9 +41,9 @@ class ChainBundle():
         from scipy.optimize import curve_fit
         """Similar to
         https://pythonhosted.org/MDAnalysis/_modules/MDAnalysis/analysis/polymer.html"""
-        n = self.bundle.shape[1]
-        results_total = np.zeros((self.bundle.shape[0], n - 1))
-        for a, chain in enumerate(self.bundle):
+        n = self.data.shape[1]
+        results_total = np.zeros((self.data.shape[0], n - 1))
+        for a, chain in enumerate(self.data):
             chain = chain
             vecs = chain[1:] - chain[:-1]
             vecs_norm = vecs / np.sqrt((vecs * vecs).sum(axis=1))[:, None]
@@ -63,21 +63,21 @@ class ChainBundle():
         x = np.arange(n - 1) * l
         lamb, dlamb = curve_fit(expon, x, results_curve, p0=0.1)
         if verbose:
-            return 1 / lamb, x, results_curve
+            return 1 / lamb[0], x, results_curve
         else:
-            return 1 / lamb
+            return 1 / lamb[0]
 
-    def plot(self, **kwargs):
+    def plot(self, ax=None, **kwargs):
         """
         :param kwargs: e.g. color='blue'
         :return:
         """
-        if self.bundle is None:
+        if ax is None:
+            ax = plt.gca()
+        label = kwargs.pop('label','')
+        if self.data is None:
             raise "call .compute first to get a WLC bundle of chains"
         else:
-            for i, chain in enumerate(self.bundle):
-                plt.plot(*chain.T, **kwargs)
-
-    @staticmethod
-    def show(self):
-        plt.show()
+            for i, chain in enumerate(self.data):
+                ax.plot(*chain.T, label="%s"%label if i == 0 else '', **kwargs)
+        return ax
