@@ -1,5 +1,5 @@
 # Worm Like Chain Simulator
-![IntroPlot](intro.png)
+![IntroPlot](img/intro.png)
 
 ## Description
 Simulates a bundle of _n_ Worm-Like-Chains in 2D with a defined Persistence Length _p_ and a contour length _L_. Units can be plugged in arbitrarily since the result does not change if 1.0 stands for 1.0 meter or 1.0 nanometer.
@@ -53,7 +53,7 @@ plt.plot(xvals, yvals)
 plt.xlabel('Distance on the chain')
 plt.ylabel('Correlation of segments')
 ```
-![ExponPlot](expon.png)
+![ExponPlot](img/expon.png)
 
 ### Plotting
 ```python
@@ -75,7 +75,7 @@ plt.ylabel('y [nm]')
 
 plt.show()
 ```
-![BundlePlot](plot.png)
+![BundlePlot](img/plot.png)
 
 ## References
 Simulation procedure is explained in appendix of this paper:
