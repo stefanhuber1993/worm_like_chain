@@ -33,9 +33,9 @@ class ChainBundle():
 
     def compute_persistence_length(self, verbose=False):
         """
-        verbose:
+        verbose == True:
         :return: persistence length, x_values, exponential_curve
-        not verbose:
+        verbose == False:
         :return: persistence length
         """
         from scipy.optimize import curve_fit
@@ -70,7 +70,7 @@ class ChainBundle():
     def plot(self, ax=None, **kwargs):
         """
         :param kwargs: e.g. color='blue'
-        :return:
+        :return: ax
         """
         if ax is None:
             ax = plt.gca()
