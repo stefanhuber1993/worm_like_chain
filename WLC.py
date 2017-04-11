@@ -13,7 +13,7 @@ class ChainBundle():
         :param contour_length: Length of the Chains to be simulated
         :param n_segments: How smooth chain should be approximated by linear segments.
                            Should be at least 50 for meaningful results
-        :return: np.array of shape (n_chains, n_segments, 2) (last entry contains x and y coordinate)
+        :writes in self.data: np.array of shape (n_chains, n_segments, 2) (last entry contains x and y coordinate)
         """
         segment_length = contour_length / n_segments
         persistence_length = float(persistence_length)
